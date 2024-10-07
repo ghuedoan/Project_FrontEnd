@@ -1,1 +1,2 @@
-test
+Co the lam moi chuc nang la 1 man hinh (1 file html) voi 1 man hinh chinh chua cac chuc nang, roi 
+t se dieu huong url bang node
