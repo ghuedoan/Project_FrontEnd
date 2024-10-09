@@ -75,14 +75,19 @@ div.mo_so_tiet_kiem, div.lap_bao_cao, div.lap_phieu_goi{
         text-align: right;
     }
 }
-div.tra_cuu_so{
+div.tra_cuu_so,div.lap_phieu_rut, div.thay_doi_quy_dinh{
     text-align: left;
     padding-left: 30px;
+    h2{
+        text-align: left;
+    }
 }
-div.question{
+.question{
     width: 100%;
-    height: 500px;
+    height: 800px;
+    background: linear-gradient(to bottom, transparent 70%,#0096FF  70%);;
 }
+
   
  
 div.reason_to_choose{
@@ -101,10 +106,14 @@ div.reason_to_choose{
         font-size: 25px;
     }
 
+
   }
 
   div.test{
     width: 40%;
     padding-top: 40px;
     float: left;
+    img{
+        padding-left: 30px;
+    }
   }
