@@ -18,26 +18,21 @@
                 scale: 1;
             }
         }
-        div{
-            animation: appear linear;
-            animation-timeline: view();
-            animation-range: entry 0%; 
-        }
     </style>
 </head>
 <body>
-    <div class="contact_box">       
-               
+    
+    <div class="contact_box">                     
         <div class="menu" >
-            <b>Home page</b>
-            <b>Features </b>
-            <b> Tien ich</b>
-            <b>Ho tro</b>
-            
+            <nav>
+                <a href= "#home"><b>Home page</b></a>
+                <a href="#benefit"><b>Features </b></a>
+                <a href="#other"> <b>Ho tro</b></a>
+            </nav>
         </div>  
     </div>
 
-    <div class="poster">
+    <div class="poster" id="home">
         <div class="content_post">
             <h1>Phần mềm quản lý sổ tiết kiệm </h1>
             <p>Quản lý tài chính cá nhân không dễ dàng, nhưng đội ngũ của chúng tôi luôn cố gắng giúp nó trở nên đơn giản hơn trong suốt chặng đường 10 năm qua! </p>
@@ -46,13 +41,12 @@
         <div class="image">
             <img src="https://sothuchi.misa.vn/sites/sothuchi/images/home-v2/img-banner-vn.png">
         </div>
-   
-    </div>
-    
-    <h1 style="text-align: center; font-size: 50px;">Tính năng</h1>
-    <h3 style="color: gray; text-align: center;">Việc quản lý tài chính trở nên tiện lợi với những tính năng đa dạng của chúng tôi</h3>
-    
-    <div class="features" >
+    </div> 
+
+    <h1 id = "benefit" style="text-align: center;">Tính năng</h1>
+    <h3  style="color: gray; text-align: center;">Việc quản lý tài chính trở nên tiện lợi với những tính năng đa dạng của chúng tôi</h3>
+
+    <div class="features">
         <div class="mo_so_tiet_kiem">
             <h2>Mở sổ tiết kiệm<span><img src="https://sothuchi.misa.vn/sites/sothuchi/images/home-v2/img-left-4-active.svg"></span></h2>
             <p>Tinh nang mo so tiet kiem</p>
@@ -99,7 +93,7 @@
         </h2>
     </div>
 
-    <div class="question">
+    <div class="question" id="other">
         <div class="test">
             <img src="https://sothuchi.misa.vn/sites/sothuchi/images/home-v2/img-banner-question-vi.png" alt="">
         </div>
@@ -109,6 +103,27 @@
             <img src="https://sothuchi.misa.vn/sites/sothuchi/images/home-v2/F.A.Q.png" alt="" width="50%" height="50%">
         </div>       
     </div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">&uarr;</button>
     
 </body>
+<script>
+    let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+// When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
 </html>
