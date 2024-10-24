@@ -89,6 +89,9 @@
                 event.preventDefault(); // Ngăn việc submit nếu số tiền không hợp lệ
                 alert('Số tiền gửi không hợp lệ. Vui lòng nhập số tiền lớn hơn 100.000 đ.');
             } else {
+                let form = event.target;
+                let formData = new FormData(form);
+                let queryString = new URLSearchParams(formData).toString()
                 // Nếu hợp lệ, chuyển sang trang "html_mosothanhcong.html"
                 event.preventDefault(); // Ngăn trình duyệt nạp lại trang
                 window.location.href = "html_mosothanhcong.html"; // Chuyển trang 
