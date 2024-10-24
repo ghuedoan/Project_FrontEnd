@@ -1,8 +1,9 @@
 body{
     /* mo file chua anh lam background */
-    background:url(../image/doi.jpg);
-    background-size: cover; /*bgr trai dai*/
+     background:url(../image/doi.jpg);
+    background-size: cover; 
     background-position-y: -80px;
+    
 
 }
 #wrapper{
