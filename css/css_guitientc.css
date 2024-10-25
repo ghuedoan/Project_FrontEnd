@@ -1,0 +1,53 @@
+body{
+    /* mo file chua anh lam background */
+    background:url(/image/guitientc_im.jpg);
+    background-size: cover; /*bgr trai dai*/
+    background-repeat: no-repeat; /*ko lap lai hinh*/
+    background-position: center; /* căn giữa hình ảnh */
+    height: 100vh; /* Đặt chiều cao của body là 100% chiều cao của viewport */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+   
+
+}
+.marquee {
+    font-size: 50px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(49, 241, 244, 0.8); /*chu sang len*/
+    font-style: italic; /*chu in nghieng*/
+    font-weight: bold; /* in dam*/
+    text-transform: uppercase; /*in hoa*/
+    position: absolute;
+    top: 60%; /* Vị trí cách phía trên 50% */
+    left: 30%; /* Vị trí cách bên trái 50% */
+    transform: translate(-50%, -50%);
+    animation: scroll-and-stop 5s ease-out forwards;
+}
+/* chạy từ phải và dừng lại  ở giữa */
+@keyframes scroll-and-stop {
+    0% {
+        transform: translateX(100%); /* Bắt đầu ngoài màn hình, bên phải */
+    }
+    50% {
+        transform: translateX(0); /* Chạy vào giữa màn hình */
+    }
+    100% {
+        transform: translateX(0); /* Giữ nguyên vị trí ở giữa */
+    }
+}
+
+.home-icon {
+    position: absolute; /*phan tu ko lien quan den xu ly bo cuc cua phan tu khac*/
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none; /*bo gach chan */
+    display: flex;
+    align-items: center;
+}
+
+.home-icon i {
+    margin-right: 8px;
+}

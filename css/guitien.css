@@ -2,10 +2,16 @@ body {
     /* font-family: Arial, sans-serif;
     background-color: #3950e4;
     margin: 0;
-    padding: 20px; */
-    background:url(moso_image.jpg);
-    background-size: cover; /*bgr trai dai*/
-    background-position-y: 100px;
+    padding: 20px;  */
+     background:url(/image/guitien_im.png);
+    background-size: cover; 
+    background-repeat: no-repeat; /*ko lap lai hinh*/
+   
+    
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
 }
 
 h2 {
@@ -16,7 +22,7 @@ h2 {
 .saving-account-form {
     max-width: 800px;
     margin: 0 auto;
-    background-color: white;
+    background-color: rgb(234, 239, 70);
     padding: 20px;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -48,8 +54,8 @@ input[type="text"], input[type="number"], input[type="date"] {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #72e670;
+    color: rgb(26, 14, 14);
     border: none;
     border-radius: 5px;
     cursor: pointer;

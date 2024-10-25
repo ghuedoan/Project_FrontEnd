@@ -1,6 +1,6 @@
 body{
     /* mo file chua anh lam background */
-    background:url(thanhcongms.jpg);
+    background:url(/image/thanhcongms.jpg);
     background-size: cover; /*bgr trai dai*/
     background-repeat: no-repeat; /*ko lap lai hinh*/
     background-position: center; /* căn giữa hình ảnh */

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi tiền</title>
+    <link rel="stylesheet" href="/css/guitien.css">
+</head>
+<body>
+
+    <section class="saving-account-form">
+        <h2>Phiếu gửi tiền</h2>
+        <form id="savingForm">
+            <div class="row">
+                <label for="id">Mã sổ:</label>
+                <input type="text" id="id" name="id" required>
+                <label for="customer">Khách hàng:</label>
+                <input type="text" id="customer" name="customer" required>
+    
+            </div>
+            
+            
+            
+            <div class="row">
+
+                <label for="openDate">Ngày gửi:</label>
+                <input type="date" id="openDate" name="openDate" required>
+                <label for="amount">Số tiền gửi:</label>
+                <input type="text" id="amount" name="amount" required placeholder="Nhập số tiền">
+                <div id="error-message" style="color:red; font-size: 12px;"></div>
+            </div>
+            
+            <button type="submit">Lập phiếu</button>
+        </form>
+    </section>
+    <script>
+        // Định dạng số tiền nhap do co với dấu chấm
+        function formatCurrency(input) {
+            let value = input.replace(/\D/g, ''); // Loại bỏ ký tự không phải số
+            return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Thêm dấu chấm vào các nhóm 3 chữ số
+        }
+
+        // Kiểm tra số tiền không được ít hơn 100.000 đồng
+        function validateAmount(value) {
+            let rawValue = value.replace(/\./g, ''); // Loại bỏ dấu chấm
+            if (parseInt(rawValue) < 100000) {
+                return false; // Số tiền nhỏ hơn 100.000 đ
+            }
+            return true;
+        }
+
+        // Xử lý sự kiện khi người dùng nhập số tiền
+        document.getElementById('amount').addEventListener('input', function(e) {
+            let formattedValue = formatCurrency(this.value); // Định dạng lại số tiền
+            this.value = formattedValue;
+
+            let errorMessage = document.getElementById('error-message');
+            
+            // Kiểm tra số tiền có hợp lệ không
+            if (!validateAmount(this.value)) {
+                errorMessage.textContent = 'Số tiền gửi không được ít hơn 100.000 đ';
+                document.querySelector('button[type="submit"]').disabled = true; // Vô hiệu hóa nút "lap phiếu"
+            } else {
+                errorMessage.textContent = '';
+                document.querySelector('button[type="submit"]').disabled = false; // Bật lại nút "Mở sổ"
+            }
+        });
+
+        //kiem tra so tien va cho submit sang 1 trang moi
+            document.getElementById('savingForm').addEventListener('submit', function(event) {
+            let amountValue = document.getElementById('amount').value;
+            
+            // Kiểm tra số tiền trước khi submit
+            if (!validateAmount(amountValue)) {
+                event.preventDefault(); // Ngăn việc submit nếu số tiền không hợp lệ
+                alert('Số tiền gửi không hợp lệ. Vui lòng nhập số tiền lớn hơn 100.000 đ.');
+            } else {
+                // Nếu hợp lệ, chuyển sang trang "guitientc.html"
+                event.preventDefault(); // Ngăn trình duyệt nạp lại trang
+                window.location.href = "guitientc.html"; // Chuyển trang 
+            }
+        });
+    </script>
+</body>
+</html>
