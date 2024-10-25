@@ -3,48 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mở Sổ Tiết Kiệm</title>
-    <link rel="stylesheet" href="/css/css_moso.css">
+    <title>Gửi tiền</title>
+    <link rel="stylesheet" href="/css/guitien.css">
 </head>
 <body>
 
     <section class="saving-account-form">
-        <h2>Sổ Tiết Kiệm</h2>
+        <h2>Phiếu gửi tiền</h2>
         <form id="savingForm">
             <div class="row">
                 <label for="id">Mã sổ:</label>
                 <input type="text" id="id" name="id" required>
-                <label for="savingType">Loại tiết kiệm:</label>
-                <!-- chon thay vi nhap -->
-                <select id="loaiTietKiem">
-                    <option value="3_thang">3 tháng</option>
-                    <option value="6_thang">6 tháng</option>
-                    <option value="vo_thoi_han">Vô thời hạn</option>
-                </select>
-                <!-- <input type="text" id="savingType" name="savingType" required> -->
-            </div>
-            
-            <div class="row">
                 <label for="customer">Khách hàng:</label>
                 <input type="text" id="customer" name="customer" required>
-                <label for="cmnd">CMND:</label>
-                <input type="text" id="cmnd" name="cmnd" required>
+    
             </div>
             
+            
+            
             <div class="row">
-                <label for="address">Địa chỉ:</label>
-                <input type="text" id="address" name="address" required>
-                <label for="openDate">Ngày mở sổ:</label>
+
+                <label for="openDate">Ngày gửi:</label>
                 <input type="date" id="openDate" name="openDate" required>
-            </div>
-            
-            <div class="row">
                 <label for="amount">Số tiền gửi:</label>
                 <input type="text" id="amount" name="amount" required placeholder="Nhập số tiền">
                 <div id="error-message" style="color:red; font-size: 12px;"></div>
             </div>
             
-            <button type="submit">Mở sổ</button>
+            <button type="submit">Lập phiếu</button>
         </form>
     </section>
     <script>
@@ -73,7 +59,7 @@
             // Kiểm tra số tiền có hợp lệ không
             if (!validateAmount(this.value)) {
                 errorMessage.textContent = 'Số tiền gửi không được ít hơn 100.000 đ';
-                document.querySelector('button[type="submit"]').disabled = true; // Vô hiệu hóa nút "Mở sổ"
+                document.querySelector('button[type="submit"]').disabled = true; // Vô hiệu hóa nút "lap phiếu"
             } else {
                 errorMessage.textContent = '';
                 document.querySelector('button[type="submit"]').disabled = false; // Bật lại nút "Mở sổ"
@@ -89,12 +75,9 @@
                 event.preventDefault(); // Ngăn việc submit nếu số tiền không hợp lệ
                 alert('Số tiền gửi không hợp lệ. Vui lòng nhập số tiền lớn hơn 100.000 đ.');
             } else {
-                let form = event.target;
-                let formData = new FormData(form);
-                let queryString = new URLSearchParams(formData).toString()
-                // Nếu hợp lệ, chuyển sang trang "html_mosothanhcong.html"
+                // Nếu hợp lệ, chuyển sang trang "guitientc.html"
                 event.preventDefault(); // Ngăn trình duyệt nạp lại trang
-                window.location.href = "html_mosothanhcong.html"; // Chuyển trang 
+                window.location.href = "guitientc.html"; // Chuyển trang 
             }
         });
     </script>
