@@ -5,11 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mở Sổ Tiết Kiệm</title>
     <link rel="stylesheet" href="/css/css_moso.css">
+    <style>
+        /* Popup  */
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        /* Hiển thị popup */
+        .popup.show {
+            display: block;
+        }
+
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* Nút đóng popup */
+        .popup button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-
+    <header class="top-bar">
+        <h1>Quản lý Sổ Tiết Kiệm</h1>
+    </header>
     <section class="saving-account-form">
-        <h2>Sổ Tiết Kiệm</h2>
+        <h2>MỞ SỔ TIẾT KIỆM</h2>
         <form id="savingForm">
             <div class="row">
                 <label for="id">Mã sổ:</label>
@@ -44,9 +94,17 @@
                 <div id="error-message" style="color:red; font-size: 12px;"></div>
             </div>
             
-            <button type="submit">Mở sổ</button>
+            <div class="button-row">
+                <button type="submit">Mở sổ</button>
+                <button type="button" id="cancelBtn">Hủy</button>
+            </div>
         </form>
     </section>
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p>Mở sổ tiết kiệm thành công!</p>
+        <button id="closePopup">OK</button>
+    </div>
     <script>
         // Định dạng số tiền nhap do co với dấu chấm
         function formatCurrency(input) {
@@ -92,10 +150,23 @@
                 let form = event.target;
                 let formData = new FormData(form);
                 let queryString = new URLSearchParams(formData).toString()
-                // Nếu hợp lệ, chuyển sang trang "html_mosothanhcong.html"
-                event.preventDefault(); // Ngăn trình duyệt nạp lại trang
-                window.location.href = "html_mosothanhcong.html"; // Chuyển trang 
+                // // Nếu hợp lệ, chuyển sang trang "html_mosothanhcong.html"
+                 event.preventDefault(); // Ngăn trình duyệt nạp lại trang
+                 document.getElementById('popup').classList.add('show');
+                 document.getElementById('overlay').classList.add('show');
             }
+        });
+       // Nút đóng popup
+       document.getElementById('closePopup').addEventListener('click', function() {
+            // Chuyển hướng về trang homepage
+            window.location.href = "homepage.html";
+        });
+
+
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+        if (confirm('Bạn có chắc chắn muốn hủy không?')) {
+            window.location.href = "homepage.html"; // Chuyển về trang homepage /
+        }
         });
     </script>
 </body>

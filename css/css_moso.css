@@ -1,61 +1,93 @@
-body {
-    /* font-family: Arial, sans-serif;
-    background-color: #3950e4;
-    margin: 0;
-    padding: 20px; */
-    background:url(/image/moso_image.jpg);
-    background-size: cover; /*bgr trai dai*/
-    background-position-y: 100px;
-}
 
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;  /* Căn giữa theo chiều ngang */
+    align-items: center;      /* Căn giữa theo chiều dọc */
+    background-color: #58adf8; 
+}
 h2 {
     text-align: center;
     color: #333;
+    font-size: 30px;
 }
-
 .saving-account-form {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 20px;
+    width: 800px; /* Đặt chiều rộng lớn hơn cho khung form */
+    margin: 50px auto; /* Đặt form ở giữa trang với khoảng cách trên dưới */
+    padding: 30px;
+    background-color: #f9f9f9;
     border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-form {
-    display: grid;
-    gap: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
+   
+    display: grid;
+    grid-template-columns: 150px 1fr 150px 1fr; 
+    column-gap: 20px; /* Khoảng cách giữa các cột */
+    row-gap: 20px; /* Khoảng cách giữa các hàng */
+    align-items: center; /* Căn chỉnh theo chiều dọc */
 }
-
-label {
-    font-weight: bold;
-}
-
-input[type="text"], input[type="number"], input[type="date"] {
+.row input, .row select {
     flex: 1;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 200px; /*Chiều rộng cho input */
+     box-sizing: border-box; 
+    
 }
-
+/* Định dạng label để căn thẳng hàng với input */
+.row label {
+    width: 150px; /* Tăng chiều rộng của label */
+    font-weight: bold;
+    
+}
 button {
-    width: 100%;
+    width: 100px;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #45a049;
-    border: 1px solid #54a0ff ;
+button[type="submit"] {
+    background-color: #28a745; /* Màu xanh cho nút "Mở sổ" */
+}
+
+button#cancelBtn {
+    background-color: #dc3545; /* Màu đỏ cho nút "Hủy" */
+}
+
+.button-row {
+     /* Đặt khoảng cách giữa các nút */
+     display: flex;
+    justify-content: center; /* Căn giữa hai nút */
+    gap: 20px; /* Khoảng cách giữa hai nút */
+    margin-top: 20px;
+
+}
+
+
+/* Thanh màu xanh đầu trang */
+.top-bar {
+    width: 100%; /* Chiều rộng 100% màn hình */
+    background-color: #007bff; /* Màu xanh */
+    padding: 5px 0; /* Khoảng cách trong thanh */
+    text-align: center; /* Căn giữa nội dung */
+    position: fixed; /* Đặt thanh ở vị trí cố định trên đầu */
+    top: 0;
+    left: 0;
+    z-index: 100; /* Đảm bảo thanh ở phía trên các thành phần khác */
+    color: white; /* Màu chữ */
+    font-size: 18px; /* Kích thước chữ */
+}
+
+/* Căn chỉnh phần nội dung xuống dưới để không bị che bởi thanh */
+.saving-account-form {
+    margin-top: 80px; /* Khoảng cách từ đầu trang tới nội dung chính */
 }
