@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gửi tiền</title>
-    <link rel="stylesheet" href="./css/guitien.css">
+    <title>Thay đổi qui định</title>
+    <link rel="stylesheet" href="./css/quidinh1.css">
     <style>
-        /* tạo Popup */
+        /* Popup  */
         .popup {
             display: none;
             position: fixed;
@@ -27,7 +27,7 @@
             display: block;
         }
 
-        /* Overlay (lớp nền mờ) */
+        
         .overlay {
             display: none;
             position: fixed;
@@ -58,61 +58,55 @@
     <header class="top-bar">
         <h1>Quản lý Sổ Tiết Kiệm</h1>
     </header>
-
     <section class="saving-account-form">
-        <h2>Phiếu gửi tiền</h2>
+        <h2>THAY ĐỔI QUI ĐỊNH 1</h2>
         <form id="savingForm">
             <div class="row">
-                <label for="id">Mã sổ:</label>
-                <input type="text" id="id" name="id" required>
-                <label for="customer">Khách hàng:</label>
-                <input type="text" id="customer" name="customer" required>
-    
+                <label for="savingType">Loại kì hạn:</label>
+                <!-- chon thay vi nhap -->
+                <select id="loaiTietKiem">
+                    <option value="3_thang">3 tháng</option>
+                    <option value="6_thang">6 tháng</option>
+                    <option value="vo_thoi_han">Vô thời hạn</option>
+                </select>
+                <!-- <input type="text" id="savingType" name="savingType" required> -->
             </div>
-            
-            
             
             <div class="row">
-
-                <label for="openDate">Ngày gửi:</label>
-                <input type="date" id="openDate" name="openDate" required>
-                <label for="amount">Số tiền gửi:</label>
+                <label for="amount">Số tiền gửi tối thiểu:</label>
                 <input type="text" id="amount" name="amount" required placeholder="Nhập số tiền">
-                <!-- <div id="error-message" style="color:red; font-size: 12px;"></div> -->
-            </div>
-            <div class="error-message-container">
-                <div id="error-message"></div>
-            </div>
-            <div class="button-row">
-                <button type="submit">Lập phiếu</button>
-                <button type="button" id="cancelBtn">Hủy</button>
+                <div id="error-message" style="color:red; font-size: 12px;"></div>
             </div>
             
+            <div class="button-row">
+                <button type="submit">Lưu</button>
+                <button type="button" id="cancelBtn">Hủy</button>
+            </div>
         </form>
     </section>
     <div class="overlay" id="overlay"></div>
     <div class="popup" id="popup">
-        <p>Lập phiếu gửi tiền thành công!</p>
+        <p>Lưu thay đổi thành công!</p>
         <button id="closePopup">OK</button>
     </div>
+
     <script>
         // Định dạng số tiền nhap do co với dấu chấm
         function formatCurrency(input) {
-            let value = input.replace(/\D/g, ''); // Loại số
-            return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Thêm dấu chấm 
+            let value = input.replace(/\D/g, ''); // Loại bỏ ký tự không phải số
+            return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Thêm dấu chấm vào các nhóm 3 chữ số
         }
 
-        // Kiểm tra số tiền không được ít hơn 100.000 đồng
         function validateAmount(value) {
-            let rawValue = value.replace(/\./g, ''); // Loại chấm
-            if (parseInt(rawValue) < 100000) {
-                return false; // Số tiền nhỏ hơn 100.000 
+            let rawValue = value.replace(/\./g, ''); // Loại bỏ dấu chấm
+            if (parseInt(rawValue) <= 0) {
+                return false; // Số tiền lớn hơn 0 đ
             }
             return true;
         }
 
-        // Xử lý sự kiện khi người dùng nhập số tiền
-        document.getElementById('amount').addEventListener('input', function(e) {
+ // Xử lý sự kiện khi người dùng nhập số tiền
+ document.getElementById('amount').addEventListener('input', function(e) {
             let formattedValue = formatCurrency(this.value); // Định dạng lại số tiền
             this.value = formattedValue;
 
@@ -120,38 +114,42 @@
             
             // Kiểm tra số tiền có hợp lệ không
             if (!validateAmount(this.value)) {
-                errorMessage.textContent = 'Số tiền gửi không được ít hơn 100.000 đ';
-                document.querySelector('button[type="submit"]').disabled = true; //vô hiệu
+                errorMessage.textContent = 'Số tiền gửi phải lớn hơn 0 đ';
+                document.querySelector('button[type="submit"]').disabled = true; // Vô hiệu hóa nút "Mở sổ"
             } else {
                 errorMessage.textContent = '';
-                document.querySelector('button[type="submit"]').disabled = false; //mở lên
+                document.querySelector('button[type="submit"]').disabled = false; // Bật lại nút "Mở sổ"
             }
         });
 
-        //kiem tra so tien va cho submit 
+        //kiem tra so tien va cho submit sang 1 trang moi
             document.getElementById('savingForm').addEventListener('submit', function(event) {
             let amountValue = document.getElementById('amount').value;
             
             // Kiểm tra số tiền trước khi submit
             if (!validateAmount(amountValue)) {
-                event.preventDefault(); 
-                alert('Số tiền gửi không hợp lệ. Vui lòng nhập số tiền lớn hơn 100.000 đ.');
+                event.preventDefault(); // Ngăn việc submit nếu số tiền không hợp lệ
+                alert('Số tiền gửi không hợp lệ. Vui lòng nhập số tiền lớn hơn 0 đ.');
             } else {
-                // Nếu hợp lệ show popup
-                event.preventDefault(); 
-                document.getElementById('popup').classList.add('show');
-                document.getElementById('overlay').classList.add('show');
+                let form = event.target;
+                let formData = new FormData(form);
+                let queryString = new URLSearchParams(formData).toString()
+                // // Nếu hợp lệ, chuyển sang trang "html_mosothanhcong.html"
+                 event.preventDefault(); // Ngăn trình duyệt nạp lại trang
+                 document.getElementById('popup').classList.add('show');
+                 document.getElementById('overlay').classList.add('show');
             }
         });
-        // nhấn dô ok thì trở về home
-        document.getElementById('closePopup').addEventListener('click', function() {
-            
-            window.location.href = "homepage.html";
+       // Nút đóng popup
+       document.getElementById('closePopup').addEventListener('click', function() {
+            // Chuyển hướng về trang homepage
+            window.location.href = "thaydoiquidinh.html";
         });
-        //nút hủy cx về home
+
+
         document.getElementById('cancelBtn').addEventListener('click', function() {
         if (confirm('Bạn có chắc chắn muốn hủy không?')) {
-            window.location.href = "homepage.html"; // Chuyển về trang homepage /
+            window.location.href = "thaydoiquidinh.html"; 
         }
         });
     </script>
