@@ -6,73 +6,132 @@ html, body {
     display: flex;
     justify-content: center;  /* Căn giữa theo chiều ngang */
     align-items: center;      /* Căn giữa theo chiều dọc */
-    background-color: #58adf8; /* Màu nền*/
+    background-image: url("../image/lập phiếu rút tiền.jpg");
+    background-repeat: no-repeat; /* Ngăn nền lặp */
+    background-size: cover; /* Phủ kín toàn bộ trang */
+    background-position: center; /* Căn giữa hình nền */
+    background-attachment: fixed; /* Nền cố định khi cuộn */
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    padding: 0;
 }
+
+
 h2 {
     text-align: center;
     color: #333;
     font-size: 30px; /*cỡ chữ*/
 }
 
-td {
-    padding-top: 10px;
-    padding-bottom: 20px;
-    padding-left: 30px;
-    padding-right: 40px;
-  }
+table {
+    width: 100%;
+    border-collapse: collapse; /* Xóa khoảng cách giữa các ô */
+    margin-top: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+    background-color: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Màu xen kẽ các dòng */
+}
+
+tr:hover {
+    background-color: #d1ecf1; /* Đổi màu khi hover */
+}
+
   
 /* sửa toàn bộ cái khhung */
 .saving-account-form {
     width: 650px; 
     margin: 50px auto; /* Đặt form ở giữa trang với khoảng cách trên dưới */
     padding: 30px;
+    
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+
 /* canh chỉnh cho đều trong cột */
 .row {
-    
-    display: grid;
-    grid-template-columns: 200px 1fr 200px 1fr; /* 2 cột label và 2 cột input */
-    column-gap: 50px; /* Khoảng cách giữa các cột */
-    row-gap: 50px; /* Khoảng cách giữa các hàng */
-    align-items: center; /* Căn chỉnh theo chiều dọc */
-}
-.row input, .row select {
-    flex: 1;
+ 
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: left;
+}
+
+.row2 {
+ 
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: left;
+}
+
+.row input {
+    flex: 1;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 200px; /*Chiều rộng cho input */
+    width: 225px; /*Chiều rộng cho input */
      box-sizing: border-box; /*Đảm bảo padding không làm thay đổi kích thước */
     
 }
 /* Định dạng label để căn thẳng hàng với input */
-.row label {
-    width: 500px; /* Tăng chiều rộng của label */
+.row button {
+    width: 150px; /* Tăng chiều rộng của label */
     font-weight: bold;
-    
-}
-
-button {
-    width: 100px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* Tạo khoảng cách giữa ô tìm kiếm và bảng */
 }
 
 button[type="submit"] {
-    background-color: #28a745; /* Màu xanh cho nút "Mở sổ" */
+    background-color: #28a745; /* Xanh lá */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
 }
 
-button#cancelBtn {
-    background-color: #dc3545; /* Màu đỏ cho nút "Hủy" */
+button[type="button"]#cancelBtn {
+    background-color: #dc3545; /* Đỏ */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
 }
+
+
+button:hover {
+    transform: scale(1.1); /* Tăng kích thước khi hover */
+    background-color: #1e7e34; /* Đổi màu */
+}
+
+
+
+
 
 .error-message-container {
     display: flex;
@@ -104,19 +163,80 @@ button#cancelBtn {
 
 /* Thanh màu xanh đầu trang */
 .top-bar {
-    width: 100%; 
-    background-color: #007bff; 
-    padding: 5px 0; /* Khoảng cách trong thanh */
-    text-align: center; /* Căn giữa nội dung */
-    position: fixed; /* Đặt thanh ở vị trí cố định trên đầu */
+    width: 100%;
+    background: linear-gradient(to right, #007bff, #00c6ff); /* Hiệu ứng chuyển màu */
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 100; /* Đảm bảo thanh ở phía trên các thành phần khác */
-    color: white; /* Màu chữ */
-    font-size: 18px; /* Kích thước chữ */
+    z-index: 100;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase; /* Chữ in hoa */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
 }
+
 
 /* Căn chỉnh phần nội dung xuống dưới để không bị che bởi thanh */
 .saving-account-form {
-    margin-top: 80px; /* Khoảng cách từ đầu trang tới nội dung chính */
+    width: 700px;
+    padding: 30px;
+    margin-top: 100px;
+    background: rgba(255, 255, 255, 0.9); /* Nền trong suốt nhẹ */
+    border-radius: 15px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Đổ bóng rõ hơn */
+    animation: fadeIn 0.8s ease-in-out; /* Hiệu ứng xuất hiện */
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    scroll-behavior: smooth; /* Cuộn trang mượt */
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* Chiều rộng thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 5px; /* Bo góc thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0056b3; /* Đổi màu khi hover */
+}
+
+.button-row button:nth-child(1) {
+    background-color: #28a745; /* Xanh lá */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.button-row button:nth-child(2) {
+    background-color: #dc3545; /* Đỏ */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
